@@ -732,6 +732,8 @@ HTMLWidgets.widget({
         default:
           throw 'The editable parameter must be "cell", "row", "column", or "all"';
       }
+
+
       var disableCols = data.editable.disable ? data.editable.disable.columns : null;
       for (var i = 0; i < target.length; i++) {
         (function(cell, current) {
@@ -1238,6 +1240,12 @@ HTMLWidgets.widget({
 
   if (!HTMLWidgets.shinyMode) return;
 
+  window.addEventListener("contextmenu", function(ev) {
+    ev.preventDefault();
+    alert('success!');
+    return false;
+  })
+
   Shiny.addCustomMessageHandler('datatable-calls', function(data) {
     var id = data.id;
     var el = document.getElementById(id);
@@ -1254,5 +1262,6 @@ HTMLWidgets.widget({
       console.log("Unknown method " + call.method);
     }
   });
+
 
 })();
